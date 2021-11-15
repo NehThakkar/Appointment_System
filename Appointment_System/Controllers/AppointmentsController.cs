@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Appointment_System.Controllers
 {
-    [Authorize(Roles = "Administrator,Pharmacist,Customer")]
+    [Authorize]
     public class AppointmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,6 +22,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Appointments
+
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Appointments.Include(a => a.Admin);
@@ -29,6 +30,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Appointments/Details/5
+        [Authorize(Roles = "Administrator,Pharmacist,Customer")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +50,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Appointments/Create
+        [AllowAnonymous]
         public IActionResult Create()
         {
             ViewData["AdminId"] = new SelectList(_context.Admins, "AdminId", "Initials");
@@ -57,6 +60,7 @@ namespace Appointment_System.Controllers
         // POST: Appointments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AppointmentID,FirstName,LastName,AddressLine1,AddressLine2,City,Province,PostalCode,PhoneNumber,BookingDateTime,Initials,AdminId")] Appointment appointment)
