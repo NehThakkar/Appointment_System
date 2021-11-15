@@ -46,7 +46,7 @@ namespace Appointment_System.Models
         public DateTime BookingDateTime { get; set; }
 
         [StringLength(2)]
-        [Display(Name = "Admin Initials")]
+        [Display(Name = "Pharmacist Initials")]
         public string Initials { get; set; }
 
         [Required()]
