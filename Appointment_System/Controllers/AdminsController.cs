@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Appointment_System.Data;
 using Appointment_System.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appointment_System.Controllers
 {
+    [Authorize]
     public class AdminsController : Controller
     {
         private readonly ApplicationDbContext _context;
