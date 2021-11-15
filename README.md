@@ -11,6 +11,6 @@
 - - Customers Credentials (email : customer@gc.ca , password : Test123$) - Registered Customers can just book appointments and see other appointments
 - - Unknown Users - who are not registered, can only book appointments without having access to any of the information
 
-- * It does not support Google registration because this live website does not come with SSL whereas the Google URI field cannot take URIs with just 'http' (has to be 'https') *
+* It does not support Google registration because this live website does not come with SSL whereas the Google URI field cannot take URIs with just 'http' (has to be 'https') *
 
 - I am still keeping an open approach to look around for idea improvements and enhance the user experience by adding the APIs and I'll also try to work on collaborating with local device calenders.
