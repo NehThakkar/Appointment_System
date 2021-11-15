@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Appointment_System.Data;
 using Appointment_System.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appointment_System.Controllers
 {
+    [Authorize(Roles = "Administrator,Pharmacist,Customer")]
     public class AppointmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -70,6 +72,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Appointments/Edit/5
+        [Authorize(Roles = "Administrator,Pharmacist")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,6 +92,7 @@ namespace Appointment_System.Controllers
         // POST: Appointments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator,Pharmacist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AppointmentID,FirstName,LastName,AddressLine1,AddressLine2,City,Province,PostalCode,PhoneNumber,BookingDateTime,Initials,AdminId")] Appointment appointment)
@@ -123,6 +127,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Appointments/Delete/5
+        [Authorize(Roles = "Administrator,Pharmacist")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,6 +147,7 @@ namespace Appointment_System.Controllers
         }
 
         // POST: Appointments/Delete/5
+        [Authorize(Roles = "Administrator,Pharmacist")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

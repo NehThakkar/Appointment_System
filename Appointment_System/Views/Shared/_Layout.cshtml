@@ -20,17 +20,23 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Pharmacist"))
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-light" href="Appointments">Appointments</a>
                         </li>
-
-                        @if (User.Identity.IsAuthenticated)
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="Admins">Admins</a>
+                        </li>
+                        }
+                        @if (User.IsInRole("Customer"))
                         {
                             <li class="nav-item">
-                            <a class="nav-link text-light" href="Admins">Admins</a>
+                                <a class="nav-link text-light" href="Appointments">Appointments</a>
                             </li>
                         }
-
+                        {
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Appointment_System.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Administrator,Pharmacist")]
     public class AdminsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -46,6 +46,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Admins/Create
+        [Authorize(Roles ="Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +55,7 @@ namespace Appointment_System.Controllers
         // POST: Admins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AdminId,Initials,Username,Password")] Admin admin)
@@ -68,6 +70,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Admins/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +89,7 @@ namespace Appointment_System.Controllers
         // POST: Admins/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AdminId,Initials,Username,Password")] Admin admin)
@@ -119,6 +123,7 @@ namespace Appointment_System.Controllers
         }
 
         // GET: Admins/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +142,7 @@ namespace Appointment_System.Controllers
         }
 
         // POST: Admins/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
