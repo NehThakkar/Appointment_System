@@ -63,7 +63,7 @@ namespace Appointment_System.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppointmentID,FirstName,LastName,AddressLine1,AddressLine2,City,Province,PostalCode,PhoneNumber,BookingDateTime,Initials,AdminId")] Appointment appointment)
+        public async Task<IActionResult> Create([Bind("AppointmentID,FirstName,LastName,AddressLine1,AddressLine2,City,Province,PostalCode,PhoneNumber,BookingDateTime,Initials,AdminId")] Appointment appointment, object p)
         {
             if (ModelState.IsValid)
             {
@@ -136,7 +136,7 @@ namespace Appointment_System.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var appointment = await _context.Appointments
@@ -144,10 +144,10 @@ namespace Appointment_System.Controllers
                 .FirstOrDefaultAsync(m => m.AppointmentID == id);
             if (appointment == null)
             {
-                return NotFound();
+                return View("404");
             }
 
-            return View(appointment);
+            return View("Delete",appointment);
         }
 
         // POST: Appointments/Delete/5
