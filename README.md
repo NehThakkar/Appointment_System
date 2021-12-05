@@ -13,7 +13,7 @@
 
 ### - It does not support Google registration because this live website does not come with SSL whereas the Google URI field cannot take URIs with just 'http' (has to be 'https')
 
-# Test Methods Details
+### Test Methods Details
 - The test methods have been added for ApoointmentsController - DELETE (GET)
 1) To check if it loads "404" when input is null
 2) To check if it loads "404" when input not null but invalid appointmentId
