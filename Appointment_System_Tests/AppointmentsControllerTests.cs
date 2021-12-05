@@ -72,7 +72,8 @@ namespace Appointment_System_Tests
 
         }
 
-        #region Delete_Get_Tests
+        #region Delete_Get
+
         [TestMethod]
         public void DeleteNullIdLoads404()
         {
@@ -88,10 +89,24 @@ namespace Appointment_System_Tests
         }
 
         [TestMethod]
-        public void DeleteValidDeletesAppointment()
+        public void DeleteValidIdDeletesAppointment()
         {
             var result = (ViewResult)controller.Delete(1000).Result;
             Assert.AreEqual("Delete", result.ViewName);
+        }
+
+        [TestMethod]
+        public void ValidIdRetrievesExactAppointment()
+        {
+            var result = (ViewResult)controller.Delete(1001).Result;
+            Assert.AreEqual(_context.Appointments.Find(1001),result.Model);
+        }
+
+        [TestMethod]
+        public void ValidIdsButNotExactApoointments()
+        {
+            var result = (ViewResult)controller.Delete(1001).Result;
+            Assert.AreNotEqual(_context.Appointments.Find(1000), result.Model);
         }
 
         #endregion
