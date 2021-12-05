@@ -13,4 +13,11 @@
 
 ### - It does not support Google registration because this live website does not come with SSL whereas the Google URI field cannot take URIs with just 'http' (has to be 'https')
 
+- The test methods have been added for ApoointmentsController - DELETE (GET)
+- 1) To check if it loads "404" when input is null
+- 2) To check if it loads "404" when input not null but invalid appointmentId
+- 3) To check if it loads Delete View when input is Valid
+- 4) To check if it loads Delete View for passed exact apoointment when input Valid
+- 5) To check if it doesn't loads Delete View for any other apoointment when input is valid
+
 - I am still keeping an open approach to look around for idea improvements and enhance the user experience by adding the APIs and I'll also try to work on collaborating with local device calenders.
